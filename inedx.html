@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card main-card">
+            <!-- App header with title and theme toggle -->
+            <div class="header">
+                <div class="app-title">
+                    <h3><i class="fa-solid fa-cloud-sun"></i> Weather Forecast</h3>
+                </div>
+                <div class="controls">
+                    <!-- Unit toggle -->
+                    <div class="unit-toggle">
+                        <button class="unit-btn active" data-unit="metric">°C</button>
+                        <button class="unit-btn" data-unit="imperial">°F</button>
+                    </div>
+                    <!-- Theme toggle -->
+                    <div class="theme-toggle">
+                        <i class="fa-solid fa-moon"></i>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="theme-toggle">
+                            <label for="theme-toggle"></label>
+                        </div>
+                        <i class="fa-solid fa-sun"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Date and time display -->
+            <div class="date-time">
+                <p id="current-date">Monday, 1 January 2024</p>
+                <p id="current-time">12:00 PM</p>
+            </div>
+
+            <!-- Search and location controls -->
+            <div class="search-container">
+                <div class="search">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" placeholder="Enter City Name" spellcheck="false">
+                    <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <button class="location-btn" title="Get current location"><i class="fa-solid fa-location-crosshairs"></i></button>
+                <button class="favorites-btn" title="Favorite locations"><i class="fa-solid fa-heart"></i></button>
+            </div>
+
+            <!-- Error message -->
+            <div class="error">
+                <p><i class="fa-solid fa-circle-exclamation"></i> Invalid City Name</p>
+            </div>
+
+            <!-- Favorites panel (initially hidden) -->
+            <div class="favorites-panel">
+                <div class="panel-header">
+                    <h3>Favorite Locations</h3>
+                    <button class="close-panel"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="favorites-list">
+                    <!-- Favorite locations will be added here -->
+                    <p class="no-favorites">No favorite locations yet. Add some by clicking the heart icon when viewing a location.</p>
+                </div>
+            </div>
+
+            <!-- Main weather content -->
+            <div class="weather">
+                <!-- Current weather header -->
+                <div class="weather-header">
+                    <div class="weather-status">
+                        <img src="images/rain.png" class="weather-icon">
+                        <div class="temp-container">
+                            <h1 class="temp">22°C</h1>
+                            <button class="favorite-toggle" title="Add to favorites">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="weather-info">
+                        <h2 class="city">New Delhi</h2>
+                        <p class="weather-description">Light Rain</p>
+                        <p class="feels-like">Feels like: 24°C</p>
+                    </div>
+                </div>
+
+                <!-- Weather alert banner (initially hidden) -->
+                <div class="weather-alert">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <p class="alert-text">Weather alert: Heavy rainfall expected</p>
+                    <button class="close-alert"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <!-- Weather details -->
+                <div class="details-container">
+                    <div class="details">
+                        <div class="col">
+                            <div class="detail-icon">
+                                <i class="fa-solid fa-droplet"></i>
+                            </div>
+                            <div>
+                                <p class="humidity">50%</p>
+                                <p>Humidity</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="detail-icon">
+                                <i class="fa-solid fa-wind"></i>
+                            </div>
+                            <div>
+                                <p class="wind">15 km/h</p>
+                                <p>Wind Speed</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="details extra-details">
+                        <div class="col">
+                            <div class="detail-icon">
+                                <i class="fa-solid fa-temperature-half"></i>
+                            </div>
+                            <div>
+                                <p class="pressure">1012 hPa</p>
+                                <p>Pressure</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="detail-icon">
+                                <i class="fa-solid fa-eye"></i>
+                            </div>
+                            <div>
+                                <p class="visibility">10 km</p>
+                                <p>Visibility</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Air Quality Index section -->
+                <div class="aqi-container">
+                    <h3><i class="fa-solid fa-lungs"></i> Air Quality</h3>
+                    <div class="aqi-meter">
+                        <div class="aqi-scale">
+                            <div class="aqi-indicator"></div>
+                        </div>
+                        <div class="aqi-labels">
+                            <span>Good</span>
+                            <span>Moderate</span>
+                            <span>Poor</span>
+                            <span>Unhealthy</span>
+                        </div>
+                    </div>
+                    <p class="aqi-value">AQI: <span>45</span> - Good</p>
+                </div>
+
+                <!-- Sunrise/Sunset visualization -->
+                <div class="sun-container">
+                    <h3><i class="fa-solid fa-sun"></i> Sunrise & Sunset</h3>
+                    <div class="sun-arc">
+                        <div class="sun-path">
+                            <div class="sun-position"></div>
+                        </div>
+                        <div class="time-markers">
+                            <div class="sunrise-time">
+                                <i class="fa-solid fa-sunrise"></i>
+                                <span>06:24 AM</span>
+                            </div>
+                            <div class="sunset-time">
+                                <i class="fa-solid fa-sunset"></i>
+                                <span>06:38 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hourly forecast section -->
+                <div class="hourly-section">
+                    <h3><i class="fa-regular fa-clock"></i> Hourly Forecast</h3>
+                    <div class="hourly-container">
+                        <!-- Hourly forecast items will be inserted here by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- 5-day forecast section -->
+                <div class="forecast-section">
+                    <h3><i class="fa-regular fa-calendar"></i> 5-Day Forecast</h3>
+                    <div class="forecast-container">
+                        <!-- Forecast items will be inserted here by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Weather recommendation section -->
+                <div class="recommendation-section">
+                    <h3><i class="fa-solid fa-lightbulb"></i> Weather Tips</h3>
+                    <div class="recommendation-content">
+                        <p class="recommendation-text">It's rainy today. Don't forget your umbrella and wear waterproof shoes if you're going out.</p>
+                    </div>
+                </div>
+
+                <!-- Weather map section -->
+                <div class="map-section">
+                    <h3><i class="fa-solid fa-map-location-dot"></i> Weather Map</h3>
+                    <div class="map-container">
+                        <iframe id="weather-map" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <!-- Moon Phase Section (NEW) -->
+                <div class="moon-container">
+                    <h3><i class="fa-solid fa-moon"></i> Moon Phase</h3>
+                    <div class="moon-display">
+                        <div class="moon-phase-visual">
+                            <div class="moon-circle">
+                                <div class="moon-phase-shadow"></div>
+                            </div>
+                        </div>
+                        <div class="moon-info">
+                            <p class="moon-phase-name">Full Moon</p>
+                            <p class="moon-phase-date">Next phase: Jan 10</p>
+                            <p class="moon-illumination">Illumination: 98%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UV Index Section (NEW) -->
+                <div class="uv-container">
+                    <h3><i class="fa-solid fa-sun"></i> UV Index</h3>
+                    <div class="uv-display">
+                        <div class="uv-meter">
+                            <div class="uv-scale">
+                                <div class="uv-indicator"></div>
+                            </div>
+                            <div class="uv-labels">
+                                <span>Low</span>
+                                <span>Moderate</span>
+                                <span>High</span>
+                                <span>Very High</span>
+                                <span>Extreme</span>
+                            </div>
+                        </div>
+                        <p class="uv-value">UV Index: <span>3</span> - Moderate</p>
+                        <p class="uv-advice">Some protection required. Wear sunscreen and a hat.</p>
+                    </div>
+                </div>
+
+                <!-- Wind Direction Compass (NEW) -->
+                <div class="wind-compass-container">
+                    <h3><i class="fa-solid fa-compass"></i> Wind Direction</h3>
+                    <div class="compass-wrapper">
+                        <div class="compass">
+                            <div class="compass-inner">
+                                <div class="north">N</div>
+                                <div class="east">E</div>
+                                <div class="south">S</div>
+                                <div class="west">W</div>
+                                <div class="arrow"></div>
+                            </div>
+                        </div>
+                        <div class="wind-info">
+                            <p class="wind-direction">NE (45°)</p>
+                            <p class="wind-speed-compass">15 km/h</p>
+                            <p class="wind-gust">Gusts: 22 km/h</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Precipitation Chart (NEW) -->
+                <div class="precipitation-container">
+                    <h3><i class="fa-solid fa-cloud-rain"></i> Precipitation Forecast</h3>
+                    <div class="precipitation-chart">
+                        <div class="chart-bars">
+                            <!-- Bars will be added by JavaScript -->
+                        </div>
+                        <div class="chart-labels">
+                            <!-- Time labels will be added by JavaScript -->
+                        </div>
+                    </div>
+                    <p class="precipitation-summary">Chance of rain peaks at 80% around 4 PM</p>
+                </div>
+
+                <!-- Weather Comparison Feature (NEW) -->
+                <div class="comparison-container">
+                    <h3><i class="fa-solid fa-scale-balanced"></i> Compare Weather</h3>
+                    <div class="comparison-form">
+                        <input type="text" id="compare-city" placeholder="Enter city to compare with">
+                        <button id="compare-btn"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <div class="comparison-results">
+                        <!-- Comparison results will appear here -->
+                        <p class="comparison-placeholder">Enter a city above to compare weather conditions</p>
+                    </div>
+                </div>
+
+                <!-- Pollen & Allergen Information (NEW) -->
+                <div class="allergen-container">
+                    <h3><i class="fa-solid fa-seedling"></i> Pollen & Allergens</h3>
+                    <div class="allergen-levels">
+                        <div class="allergen-item">
+                            <div class="allergen-name">Tree Pollen</div>
+                            <div class="allergen-meter">
+                                <div class="allergen-level" style="width: 30%"></div>
+                            </div>
+                            <div class="allergen-value">Low</div>
+                        </div>
+                        <div class="allergen-item">
+                            <div class="allergen-name">Grass Pollen</div>
+                            <div class="allergen-meter">
+                                <div class="allergen-level" style="width: 65%"></div>
+                            </div>
+                            <div class="allergen-value">Moderate</div>
+                        </div>
+                        <div class="allergen-item">
+                            <div class="allergen-name">Ragweed</div>
+                            <div class="allergen-meter">
+                                <div class="allergen-level" style="width: 85%"></div>
+                            </div>
+                            <div class="allergen-value">High</div>
+                        </div>
+                        <div class="allergen-item">
+                            <div class="allergen-name">Mold</div>
+                            <div class="allergen-meter">
+                                <div class="allergen-level" style="width: 15%"></div>
+                            </div>
+                            <div class="allergen-value">Low</div>
+                        </div>
+                    </div>
+                    <p class="allergen-update">Last updated: <span class="update-time">2 hours ago</span></p>
+                </div>
+
+                <!-- Weather Statistics (NEW) -->
+                <div class="statistics-container">
+                    <h3><i class="fa-solid fa-chart-line"></i> Weather Statistics</h3>
+                    <div class="statistics-grid">
+                        <div class="stat-item">
+                            <div class="stat-title">Record High</div>
+                            <div class="stat-value">35°C</div>
+                            <div class="stat-date">Aug 2022</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-title">Record Low</div>
+                            <div class="stat-value">-5°C</div>
+                            <div class="stat-date">Jan 2021</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-title">Avg High</div>
+                            <div class="stat-value">25°C</div>
+                            <div class="stat-date">This month</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-title">Avg Low</div>
+                            <div class="stat-value">15°C</div>
+                            <div class="stat-date">This month</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search history section -->
+            <div class="search-history">
+                <h3>Recent Searches</h3>
+                <div class="history-list">
+                    <!-- History items will be inserted here by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Loading spinner -->
+            <div class="loader">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="weather.js"></script>
+</body>
+
+</html>
