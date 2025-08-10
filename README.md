@@ -1,4 +1,4 @@
-# 🌤️ Weather Forecast Web App
+# Weather Forecast Web App
 
 > *"Harnessing the whispers of the winds and the tales of the clouds, this app brings the sky's secrets to your fingertips."*
 
@@ -6,16 +6,16 @@ Welcome to the **Weather Forecast Web App**, a clean and responsive application 
 
 ---
 
-## 🔍 Features
+## Features
 
-- 📍 Get real-time weather data by entering any city name
-- 🎨 Intuitive and elegant UI
-- 📱 Fully responsive — works across desktop and mobile
-- 🌈 Visual cues for weather conditions
+-  Get real-time weather data by entering any city name
+-  Intuitive and elegant UI
+-  Fully responsive — works across desktop and mobile
+-  Visual cues for weather conditions
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **HTML5** – Semantically structured markup
 - **CSS3** – Styling for responsive and beautiful layout
@@ -24,7 +24,7 @@ Welcome to the **Weather Forecast Web App**, a clean and responsive application 
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -56,7 +56,7 @@ Welcome to the **Weather Forecast Web App**, a clean and responsive application 
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 Weather-Forecast/
@@ -69,18 +69,18 @@ Weather-Forecast/
 
 ---
 
-## 📌 Usage
+## Usage
 
 1. Open the app in your web browser.
 2. Enter the name of any city.
 3. View live weather details including:
-   - 🌡️ Temperature
-   - 💧 Humidity
-   - 🌥️ Weather condition
+   - Temperature
+   - Humidity
+   - Weather conditions
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome!
 
@@ -91,20 +91,20 @@ Contributions are welcome!
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Thanks to OpenWeatherMap for their powerful and accessible weather API.
 - To all the traditional forecasters and modern coders — may your predictions be as precise as your code is clean.
 
 ---
 
-## 📞 Contact
+## Contact
 
 For any questions or suggestions, feel free to reach out:
 
@@ -113,4 +113,4 @@ For any questions or suggestions, feel free to reach out:
 
 ---
 
-*Made with ❤️ and ☕ by developers who believe in clean code and clear skies.*
+*Made by the developer who believes in clean code and clear skies.*
